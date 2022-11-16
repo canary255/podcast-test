@@ -1,4 +1,4 @@
-import { CardWithAvatar } from "./Components/Header"
+import { CardWithAvatar } from "./Components/molecules/Header"
 import "./index.css"
 
 function App() {

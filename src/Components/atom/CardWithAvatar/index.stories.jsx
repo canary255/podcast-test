@@ -1,5 +1,5 @@
 import React from "react";
-import { CardWithAvatar } from "../Header";
+import { CardWithAvatar } from ".";
 
 export default {
   title: "Component/Avatar",
@@ -9,8 +9,5 @@ export default {
 
 const Template = (args) => <CardWithAvatar {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: "Button",
-};
+export const Default = Template.bind({});
+Default.args = {};
