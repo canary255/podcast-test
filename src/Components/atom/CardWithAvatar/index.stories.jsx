@@ -2,7 +2,7 @@ import React from "react";
 import { CardWithAvatar } from ".";
 
 export default {
-  title: "Component/Avatar",
+  title: "Atom/Avatar",
   component: CardWithAvatar,
   argTypes: {},
 };
