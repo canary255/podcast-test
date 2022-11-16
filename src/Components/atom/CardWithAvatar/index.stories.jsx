@@ -7,7 +7,13 @@ export default {
   argTypes: {},
 };
 
-const Template = (args) => <CardWithAvatar {...args} />;
+const Template = (args) => (
+  <CardWithAvatar {...args}>{args.children}</CardWithAvatar>
+);
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  children: "Elysium",
+  author: "Stratovarius",
+  src: "https://m.media-amazon.com/images/I/610ZK-2PFrL.jpg",
+};
