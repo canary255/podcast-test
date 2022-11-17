@@ -28,7 +28,7 @@ export const Podcast = () => {
   ];
 
   return (
-    <div class="grid grid-rows-3 grid-flow-col gap-4">
+    <div className="grid grid-rows-3 grid-flow-col gap-4">
       <div className="row-span-3 col-span-1">
         <PodcastInfo
           author={podcast.author}
