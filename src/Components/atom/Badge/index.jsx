@@ -1,6 +1,6 @@
 export const Badge = ({ children }) => {
   return (
-    <span class="px-2 rounded-lg text-white bg-blue-500 font-semibold text-lg flex align-center w-max">
+    <span className="px-3 py-2 rounded-lg text-white align-middle bg-blue-500 font-semibold text-lg w-max">
       {children}
     </span>
   );
