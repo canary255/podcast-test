@@ -1,9 +1,17 @@
-import { CardWithAvatar } from "./Components/molecules/Header"
-import "./index.css"
+import { Header } from "./Components/atom/Header/index";
+import { MainPage } from "./Components/page/MainPage/index";
+import "./index.css";
 
 function App() {
   return (
-    <CardWithAvatar />
+    <div className="p-8">
+      <div>
+        <Header />
+      </div>
+      <div className="mt-8">
+        <MainPage />
+      </div>
+    </div>
   );
 }
 
