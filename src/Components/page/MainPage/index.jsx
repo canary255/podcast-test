@@ -19,7 +19,7 @@ export const MainPage = () => {
           <InputFilter />
         </div>
       </div>
-      <div className="grid gap-4 grid-cols-2 grid-rows-3 md:grid-cols-4">
+      <div className="grid gap-4 grid-cols-2 grid-rows-2 md:grid-cols-4">
         {data.map((item, index) => (
           <CardWithAvatar key={index} author={item.author} src={item.src}>
             {item.title}
