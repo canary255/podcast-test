@@ -16,7 +16,7 @@ const description = `<div><p>Lorem ipsum dolor sit amet, consectetur adipiscing 
   <a class="text-blue-500" href="http://www.google.com" target="_blank">Donec imperdiet euismod lorem, 
   non luctus ligula finibus sit amet. Duis auctor purus sit amet efficitur auctor.</a></div>`;
 
-const Template = (args) => <EpisodeInfo {...args}>{args.children}</EpisodeInfo>;
+const Template = (args) => <EpisodeInfo {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

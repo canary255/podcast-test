@@ -7,9 +7,7 @@ export default {
   argTypes: {},
 };
 
-const Template = (args) => (
-  <NumberEpisodes {...args}>{args.children}</NumberEpisodes>
-);
+const Template = (args) => <NumberEpisodes>{args.children}</NumberEpisodes>;
 
 export const Default = Template.bind({});
 Default.args = {

@@ -7,9 +7,7 @@ export default {
   argTypes: {},
 };
 
-const Template = (args) => <Loading>{args.children}</Loading>;
+const Template = (args) => <Loading />;
 
 export const Default = Template.bind({});
-Default.args = {
-  children: 100,
-};
+Default.args = {};

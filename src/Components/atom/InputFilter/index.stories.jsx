@@ -7,9 +7,7 @@ export default {
   argTypes: {},
 };
 
-const Template = (args) => <InputFilter {...args}>{args.children}</InputFilter>;
+const Template = (args) => <InputFilter {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {
-  children: 10,
-};
+Default.args = {};
