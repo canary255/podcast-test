@@ -1,6 +1,6 @@
 export const PodcastInfo = ({ title, author, children, src }) => {
   return (
-    <div className="shadow-lg w-64 h-2/3">
+    <div className="shadow-lg w-64">
       <div className="my-auto mt-4 mb-4">
         <img className="w-48 h-48 mx-auto rounded" src={src} alt="Album name" />
       </div>

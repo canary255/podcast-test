@@ -1,4 +1,4 @@
-export const EpisodeList = ({ list }) => {
+export const EpisodeList = ({ list = [] }) => {
   return (
     <div className="shadow-lg w-full p-4">
       <table className="w-full text-sm text-left">
