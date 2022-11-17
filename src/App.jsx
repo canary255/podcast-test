@@ -1,17 +1,20 @@
+import { BrowserRouter } from "react-router-dom";
 import { Header } from "./Components/atom/Header/index";
-import { MainPage } from "./Components/page/MainPage/index";
+import AppRoutes from "./Components/page/Routes/index";
 import "./index.css";
 
 function App() {
   return (
-    <div className="p-8">
-      <div>
-        <Header />
+    <BrowserRouter>
+      <div className="p-8">
+        <div>
+          <Header />
+        </div>
+        <div className="mt-8">
+          <AppRoutes />
+        </div>
       </div>
-      <div className="mt-8">
-        <MainPage />
-      </div>
-    </div>
+    </BrowserRouter>
   );
 }
 
