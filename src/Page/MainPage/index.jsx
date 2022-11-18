@@ -1,7 +1,7 @@
-import { Badge } from "../../atom/Badge/index";
-import { InputFilter } from "../../atom/InputFilter/index";
-import { CardWithAvatar } from "../../atom/CardWithAvatar/index";
-import { Loading } from "../../atom/Loading/index";
+import { Badge } from "../../Components/Badge/index";
+import { InputFilter } from "../../Components/InputFilter/index";
+import { CardWithAvatar } from "../../Components/CardWithAvatar/index";
+import { Loading } from "../../Components/Loading/index";
 import { useEffect, useState } from "react";
 import { fetchData } from "./utils/fetchData";
 import { filterInputData } from "./utils/filterInputData";

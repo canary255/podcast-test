@@ -1,5 +1,5 @@
-import { PodcastInfo } from "../../atom/PodcastInfo/index";
-import { EpisodeInfo } from "../../atom/EpisodeInfo/index";
+import { PodcastInfo } from "../../Components/PodcastInfo/index";
+import { EpisodeInfo } from "../../Components/EpisodeInfo/index";
 
 export const EpisodeDetails = () => {
   const podcast = {

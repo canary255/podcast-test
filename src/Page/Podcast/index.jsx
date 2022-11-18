@@ -1,6 +1,6 @@
-import { PodcastInfo } from "../../atom/PodcastInfo/index";
-import { NumberEpisodes } from "../../atom/NumberEpisodes/index";
-import { EpisodeList } from "../../atom/EpisodeList/index";
+import { PodcastInfo } from "../../Components/PodcastInfo/index";
+import { NumberEpisodes } from "../../Components/NumberEpisodes/index";
+import { EpisodeList } from "../../Components/EpisodeList/index";
 export const Podcast = () => {
   const podcast = {
     title: "Elysium",
