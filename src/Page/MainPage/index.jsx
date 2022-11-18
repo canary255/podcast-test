@@ -5,6 +5,7 @@ import { Loading } from "../../Components/Loading/index";
 import { useEffect, useState } from "react";
 import { fetchData } from "./utils/fetchData";
 import { filterInputData } from "./utils/filterInputData";
+import { Link } from "react-router-dom";
 
 export const MainPage = () => {
   const [data, setData] = useState([]);
@@ -49,13 +50,19 @@ export const MainPage = () => {
       </div>
       <div className="grid gap-4 grid-cols-2 grid-rows-2 md:grid-cols-4">
         {filteredData.map((item, index) => (
-          <CardWithAvatar
+          <Link
             key={index}
-            author={item["im:artist"]?.label}
-            src={item["im:image"][2]?.label}
+            to={{
+              pathname: `/podcast/${item?.id?.attributes["im:id"]}`,
+            }}
           >
-            {item["im:name"]?.label}
-          </CardWithAvatar>
+            <CardWithAvatar
+              author={item["im:artist"]?.label}
+              src={item["im:image"][2]?.label}
+            >
+              {item["im:name"]?.label}
+            </CardWithAvatar>
+          </Link>
         ))}
       </div>
     </>
