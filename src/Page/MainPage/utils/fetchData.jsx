@@ -1,18 +1,18 @@
 export const fetchData = async (url, setData, setFilteredData, signal) => {
   try {
-    if (
-      localStorage?.getItem("podcasts") &&
-      localStorage?.getItem("timePodcast")
-    ) {
-      const countDownDate = localStorage?.getItem("timePodcast");
+    const podcast = localStorage?.getItem("podcasts");
+    const timePodcast = localStorage?.getItem("timePodcast");
+    if (podcast && timePodcast) {
       // Get today's date and time
       const now = new Date().getTime();
       // Find the distance between now and the count down date
-      const distance = countDownDate - now;
+      const distance = timePodcast - now;
 
-      if (distance > 0) setData(JSON.parse(localStorage?.getItem("podcasts")));
-      setFilteredData(JSON.parse(localStorage?.getItem("podcasts")));
-      return;
+      if (distance > 0) {
+        setData(JSON.parse(localStorage?.getItem("podcasts")));
+        setFilteredData(JSON.parse(localStorage?.getItem("podcasts")));
+        return;
+      }
     }
 
     return fetch(url, { signal: signal })
