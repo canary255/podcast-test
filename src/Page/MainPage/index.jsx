@@ -40,7 +40,7 @@ export const MainPage = () => {
         </div>
         <div className="flex flex-initial w-1/4">
           <InputFilter
-            onKeyUp={(e) =>
+            onChange={(e) =>
               setFilteredData(() => {
                 return filterInputData(e, data);
               })

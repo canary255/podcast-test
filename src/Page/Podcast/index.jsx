@@ -1,46 +1,49 @@
 import { PodcastInfo } from "../../Components/PodcastInfo/index";
 import { NumberEpisodes } from "../../Components/NumberEpisodes/index";
 import { EpisodeList } from "../../Components/EpisodeList/index";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getEpisode } from "./utils/getEpisode";
+import { Loading } from "../../Components/Loading";
 export const Podcast = () => {
-  const podcast = {
-    title: "Elysium",
-    author: "Stratovarius",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus suscipit nisi arcu, vel eleifend neque semper dapibus. Nam tempus faucibus quam, ornare tempor felis faucibus ac.",
-    src: "https://m.media-amazon.com/images/I/610ZK-2PFrL.jpg",
-  };
+  const [data, setData] = useState();
+  //const [trackList, setTrackList] = useState();
+  const [loading, setLoading] = useState(true);
 
-  const list = [
-    { title: "Darkest hours", date: "15/01/2011", duration: "4:11" },
-    { title: "The Game Never Ends", date: "24/10/2011", duration: "3:53" },
-    { title: "Under Flaming Skies", date: "08/04/2011", duration: "3:51" },
-    { title: "Darkest hours", date: "15/01/2011", duration: "4:11" },
-    { title: "The Game Never Ends", date: "24/10/2011", duration: "3:53" },
-    { title: "Under Flaming Skies", date: "08/04/2011", duration: "3:51" },
-    { title: "Darkest hours", date: "15/01/2011", duration: "4:11" },
-    { title: "The Game Never Ends", date: "24/10/2011", duration: "3:53" },
-    { title: "Under Flaming Skies", date: "08/04/2011", duration: "3:51" },
-    { title: "Under Flaming Skies", date: "08/04/2011", duration: "3:51" },
-    { title: "Under Flaming Skies", date: "08/04/2011", duration: "3:51" },
-    { title: "Under Flaming Skies", date: "08/04/2011", duration: "3:51" },
-    { title: "Under Flaming Skies", date: "08/04/2011", duration: "3:51" },
-    { title: "Under Flaming Skies", date: "08/04/2011", duration: "3:51" },
-  ];
+  const { podcastId } = useParams();
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    getEpisode(
+      `https://itunes.apple.com/lookup?id=${podcastId}`,
+      setData,
+      signal
+    ).finally(() =>
+      setLoading(() => {
+        return false;
+      })
+    );
+    return () => controller.abort();
+  }, [podcastId]);
 
   return (
     <div className="grid grid-rows-2 grid-flow-col gap-4">
+      {loading ? <Loading /> : null}
+      {console.log(data)}
       <div className="row-span-3 col-span-1">
         <PodcastInfo
-          author={podcast.author}
-          src={podcast.src}
-          title={podcast.title}
+          author={data?.results[0]?.artistName}
+          src={data?.results[0]?.artworkUrl600}
+          title={data?.results[0]?.trackName}
         >
-          {podcast.description}
+          {"podcast.description"}
         </PodcastInfo>
       </div>
       <div className="col-span-2 row-span-2">
-        <NumberEpisodes>{list.length}</NumberEpisodes>
-        <EpisodeList list={list} />
+        <NumberEpisodes>{data?.results[0]?.trackCount}</NumberEpisodes>
+        <EpisodeList list={[]} />
       </div>
     </div>
   );
