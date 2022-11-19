@@ -15,7 +15,7 @@ export const fetchData = async (url, setData, setFilteredData, signal) => {
       }
     }
 
-    return fetch(url, { signal: signal })
+    return await fetch(url, { signal: signal })
       .then((response) => response.json())
       .then((data) => {
         setData(() => {
