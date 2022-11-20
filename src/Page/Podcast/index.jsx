@@ -33,18 +33,16 @@ export const Podcast = () => {
       {console.log(data)}
       <div className="row-span-3 col-span-1">
         <PodcastInfo
-          author={data?.podcastInfo?.results[0]?.artistName}
-          src={data?.podcastInfo?.results[0]?.artworkUrl600}
-          title={data?.podcastInfo?.results[0]?.trackName}
+          author={data?.rss.author}
+          src={data?.rss?.image}
+          title={data?.rss?.title}
         >
-          {"podcast.description"}
+          {data?.rss?.description}
         </PodcastInfo>
       </div>
       <div className="col-span-2 row-span-2">
-        <NumberEpisodes>
-          {data?.podcastInfo?.results[0]?.trackCount}
-        </NumberEpisodes>
-        <EpisodeList list={[]} />
+        <NumberEpisodes>{data?.rss?.items?.length}</NumberEpisodes>
+        <EpisodeList list={data?.rss?.items} id={podcastId} />
       </div>
     </div>
   );

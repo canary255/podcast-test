@@ -6,15 +6,14 @@ export const getEpisode = async (url, setData, signal) => {
     const response = await fetch(`${corsUrl}${url}`, { signal: signal });
     const podcastInfo = await response.json();
 
-    var rss = await parse(`${corsUrl}${podcastInfo.results[0].feedUrl}`, {
+    var rss = await parse(`${corsUrl}${podcastInfo?.results[0]?.feedUrl}`, {
       signal: signal,
     });
 
     setData(() => {
-      return { rss, podcastInfo };
+      return { rss: { ...rss, author: podcastInfo?.results[0]?.artistName } };
     });
   } catch (error) {
     console.log("error", error);
-    return null;
   }
 };
