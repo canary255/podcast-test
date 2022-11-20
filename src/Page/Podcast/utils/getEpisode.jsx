@@ -31,9 +31,17 @@ export const getEpisode = async (podcastId, setData, signal) => {
 
     const episodeList = {
       rss: {
-        ...rss,
+        title: rss.title,
         author: podcastInfo?.results[0]?.artistName,
         image: podcastInfo?.results[0]?.artworkUrl600,
+        description: rss.description,
+        items: rss.items.map((item) => {
+          return {
+            title: item.title,
+            date: new Date(item?.created).toLocaleDateString(),
+            duration: item?.itunes_duration,
+          };
+        }),
       },
     };
 

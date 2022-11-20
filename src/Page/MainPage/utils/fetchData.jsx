@@ -11,17 +11,24 @@ export const fetchData = async (url, setData, setFilteredData, signal) => {
       const distance = timePodcast - now;
 
       if (distance > 0) {
-        setData(JSON.parse(localStorage?.getItem("podcasts")));
-        setFilteredData(JSON.parse(localStorage?.getItem("podcasts")));
+        setData(JSON.parse(podcast));
+        setFilteredData(JSON.parse(podcast));
         return;
       }
     }
 
     const response = await fetch(url, { signal: signal });
     const data = await response.json();
-    setData(data);
-    setFilteredData(data);
-    localStorage?.setItem("podcasts", JSON.stringify(data));
+    const value = data.feed.entry;
+
+    setData(() => {
+      return value;
+    });
+    setFilteredData(() => {
+      return value;
+    });
+
+    localStorage?.setItem("podcasts", JSON.stringify(value));
     localStorage?.setItem("timePodcast", getNextDay());
   } catch (error) {
     console.log("error", error);
