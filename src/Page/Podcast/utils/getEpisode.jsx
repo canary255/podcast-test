@@ -1,41 +1,20 @@
+import parse from "rss-to-json";
+
 export const getEpisode = async (url, setData, signal) => {
   try {
-    /*const podcast = localStorage?.getItem("podcasts");
-    const timePodcast = localStorage?.getItem("timePodcast");
-    if (podcast && timePodcast) {
-      // Get today's date and time
-      const now = new Date().getTime();
-      // Find the distance between now and the count down date
-      const distance = timePodcast - now;
+    const corsUrl = "https://cors-anywhere.herokuapp.com/";
+    const response = await fetch(`${corsUrl}${url}`, { signal: signal });
+    const podcastInfo = await response.json();
 
-      if (distance > 0) {
-        setData(JSON.parse(localStorage?.getItem("podcasts")));
-        setFilteredData(JSON.parse(localStorage?.getItem("podcasts")));
-        return;
-      }
-    }*/
+    var rss = await parse(`${corsUrl}${podcastInfo.results[0].feedUrl}`, {
+      signal: signal,
+    });
 
-    return await fetch(url, { signal: signal })
-      .then((response) => response.json())
-      .then((data) => {
-        setData(() => {
-          return data;
-        });
+    setData(() => {
+      return { rss, podcastInfo };
+    });
 
-        /*localStorage?.setItem("podcasts", JSON.stringify(data.feed.entry));
-
-        //store next day value
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        localStorage?.setItem("timePodcast", tomorrow.getTime());*/
-      })
-      .catch((error) => {
-        if (error.name === "AbortError") {
-          console.log("Successfully aborted operation");
-        } else {
-          console.log("error", error);
-        }
-      });
+    return true;
   } catch (error) {
     console.log("error", error);
     return null;

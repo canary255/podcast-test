@@ -7,8 +7,6 @@ import { getEpisode } from "./utils/getEpisode";
 import { Loading } from "../../Components/Loading";
 export const Podcast = () => {
   const [data, setData] = useState();
-  //const [trackList, setTrackList] = useState();
-  const [loading, setLoading] = useState(true);
 
   const { podcastId } = useParams();
 
@@ -16,33 +14,36 @@ export const Podcast = () => {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    getEpisode(
-      `https://itunes.apple.com/lookup?id=${podcastId}`,
-      setData,
-      signal
-    ).finally(() =>
-      setLoading(() => {
-        return false;
-      })
-    );
+    async function fetchData() {
+      await getEpisode(
+        `https://itunes.apple.com/lookup?id=${podcastId}`,
+        setData,
+        signal
+      );
+    }
+
+    fetchData();
+
     return () => controller.abort();
   }, [podcastId]);
 
   return (
     <div className="grid grid-rows-2 grid-flow-col gap-4">
-      {loading ? <Loading /> : null}
+      {!data ? <Loading /> : null}
       {console.log(data)}
       <div className="row-span-3 col-span-1">
         <PodcastInfo
-          author={data?.results[0]?.artistName}
-          src={data?.results[0]?.artworkUrl600}
-          title={data?.results[0]?.trackName}
+          author={data?.podcastInfo?.results[0]?.artistName}
+          src={data?.podcastInfo?.results[0]?.artworkUrl600}
+          title={data?.podcastInfo?.results[0]?.trackName}
         >
           {"podcast.description"}
         </PodcastInfo>
       </div>
       <div className="col-span-2 row-span-2">
-        <NumberEpisodes>{data?.results[0]?.trackCount}</NumberEpisodes>
+        <NumberEpisodes>
+          {data?.podcastInfo?.results[0]?.trackCount}
+        </NumberEpisodes>
         <EpisodeList list={[]} />
       </div>
     </div>
