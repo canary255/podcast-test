@@ -30,7 +30,11 @@ export const getEpisode = async (podcastId, setData, signal) => {
     });
 
     const episodeList = {
-      rss: { ...rss, author: podcastInfo?.results[0]?.artistName },
+      rss: {
+        ...rss,
+        author: podcastInfo?.results[0]?.artistName,
+        image: podcastInfo?.results[0]?.artworkUrl600,
+      },
     };
 
     const episodeListStorage = {
