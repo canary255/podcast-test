@@ -26,12 +26,12 @@ export const Podcast = () => {
   return (
     <div className="grid grid-rows-2 grid-flow-col gap-4">
       {!data ? <Loading /> : null}
-      {console.log(data)}
       <div className="row-span-3 col-span-1">
         <PodcastInfo
           author={data?.rss.author}
           src={data?.rss?.image}
           title={data?.rss?.title}
+          id={podcastId}
         >
           {data?.rss?.description}
         </PodcastInfo>
