@@ -8,9 +8,8 @@ import { filterInputData } from "./utils/filterInputData";
 import { Link } from "react-router-dom";
 
 export const MainPage = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
   const [filteredData, setFilteredData] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   //useEffect re-rending twice because is in development and it's a feature
   //https://stackoverflow.com/questions/72238175/useeffect-is-running-twice-on-mount-in-react
@@ -23,17 +22,13 @@ export const MainPage = () => {
       setData,
       setFilteredData,
       signal
-    ).finally(() =>
-      setLoading(() => {
-        return false;
-      })
     );
     return () => controller.abort();
   }, []);
 
   return (
     <>
-      {loading ? <Loading /> : null}
+      {!data ? <Loading /> : null}
       <div className="flex justify-end mb-16">
         <div className="flex flex-none w-1/8 mr-4">
           <Badge>{filteredData ? filteredData.length : 0}</Badge>

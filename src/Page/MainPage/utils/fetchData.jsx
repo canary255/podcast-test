@@ -15,31 +15,15 @@ export const fetchData = async (url, setData, setFilteredData, signal) => {
       }
     }
 
-    return await fetch(url, { signal: signal })
-      .then((response) => response.json())
-      .then((data) => {
-        setData(() => {
-          return data.feed.entry;
-        });
-
-        setFilteredData(() => {
-          return data.feed.entry;
-        });
-
-        localStorage?.setItem("podcasts", JSON.stringify(data.feed.entry));
-
-        //store next day value
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        localStorage?.setItem("timePodcast", tomorrow.getTime());
-      })
-      .catch((error) => {
-        if (error.name === "AbortError") {
-          console.log("Successfully aborted operation");
-        } else {
-          console.log("error", error);
-        }
-      });
+    const response = await fetch(url, { signal: signal });
+    const data = await response.json();
+    setData(data);
+    setFilteredData(data);
+    localStorage?.setItem("podcasts", JSON.stringify(data));
+    //store next day value
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    localStorage?.setItem("timePodcast", tomorrow.getTime());
   } catch (error) {
     console.log("error", error);
     return null;

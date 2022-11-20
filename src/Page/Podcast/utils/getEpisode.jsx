@@ -13,8 +13,6 @@ export const getEpisode = async (url, setData, signal) => {
     setData(() => {
       return { rss, podcastInfo };
     });
-
-    return true;
   } catch (error) {
     console.log("error", error);
     return null;
