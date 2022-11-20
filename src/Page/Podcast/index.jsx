@@ -15,11 +15,7 @@ export const Podcast = () => {
     const signal = controller.signal;
 
     async function fetchData() {
-      await getEpisode(
-        `https://itunes.apple.com/lookup?id=${podcastId}`,
-        setData,
-        signal
-      );
+      await getEpisode(podcastId, setData, signal);
     }
 
     fetchData();

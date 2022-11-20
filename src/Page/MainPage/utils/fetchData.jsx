@@ -1,3 +1,5 @@
+import { getNextDay } from "../../../Domains/getNextDay";
+
 export const fetchData = async (url, setData, setFilteredData, signal) => {
   try {
     const podcast = localStorage?.getItem("podcasts");
@@ -20,10 +22,7 @@ export const fetchData = async (url, setData, setFilteredData, signal) => {
     setData(data);
     setFilteredData(data);
     localStorage?.setItem("podcasts", JSON.stringify(data));
-    //store next day value
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    localStorage?.setItem("timePodcast", tomorrow.getTime());
+    localStorage?.setItem("timePodcast", getNextDay());
   } catch (error) {
     console.log("error", error);
     return null;
