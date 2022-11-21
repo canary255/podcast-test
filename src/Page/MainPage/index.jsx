@@ -43,7 +43,7 @@ export const MainPage = () => {
           />
         </div>
       </div>
-      <div className="grid gap-4 grid-cols-2 grid-rows-2 md:grid-cols-4">
+      <div className="grid gap-4 grid-cols-4">
         {filteredData.map((item, index) => (
           <Link
             key={index}
