@@ -23,6 +23,11 @@ export const getEpisode = async (podcastId, setData, signal) => {
       `${corsUrl}https://itunes.apple.com/lookup?id=${podcastId}`,
       { signal: signal }
     );
+
+    if (response.status !== 200) {
+      throw new Error(response.statusText);
+    }
+
     const podcastInfo = await response.json();
 
     var rss = await parse(`${corsUrl}${podcastInfo?.results[0]?.feedUrl}`, {

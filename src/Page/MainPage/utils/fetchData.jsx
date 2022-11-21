@@ -18,6 +18,11 @@ export const fetchData = async (url, setData, setFilteredData, signal) => {
     }
 
     const response = await fetch(url, { signal: signal });
+
+    if (response.status !== 200) {
+      throw new Error(response.statusText);
+    }
+
     const data = await response.json();
     const value = data.feed.entry;
 
