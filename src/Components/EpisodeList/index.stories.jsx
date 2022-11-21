@@ -1,9 +1,11 @@
 import React from "react";
+import { withRouter } from "storybook-addon-react-router-v6";
 import { EpisodeList } from ".";
 
 export default {
   title: "Atom/EpisodeList",
   component: EpisodeList,
+  decorators: [withRouter],
   argTypes: {},
 };
 
