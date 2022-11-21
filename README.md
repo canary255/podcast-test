@@ -10,8 +10,9 @@ Este proyecto fue creado con [Create React App](https://github.com/facebook/crea
 
 ## Scripts para ejecutar el proyecto
 
-> Para ejecutar el proyecto, primero deberá de tener instalado `node` y `npm` en su equipo. 
-> `En este proyecto se ha usado node v16.13.0. Se ha probado también en v18.12.1.`
+> Para ejecutar el proyecto, primero deberá de tener instalado `node` y `npm` en su equipo.
+ 
+> En este proyecto se ha usado node `v16.13.0`. Probado también en `v18.12.1`.
 
 ### `npm install`
 
